@@ -1,4 +1,28 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Background transparente */
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+</style>
+
 <div class="container d-flex justify-content-center align-items-center flex-column">
     <div class="row justify-content-center">
         <div class="col-sm-12 mb-3 d-flex justify-content-center">
@@ -103,8 +127,9 @@
                                         <input type="text" class="form-control" placeholder=" ">
                                         <label class="form__label">Name on the card</label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                   
                                 </form>
+                                
                             </div>
                         </div>
                     </div>
@@ -115,6 +140,32 @@
             <div class="btn btn-primary payment w-100 text-center">
                 Make Payment
             </div>
+            <div id="paymentModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <p id="modalMessage">Processing your payment...</p>
+                </div>
         </div>
-    </div>
-</div>
+        </div>
+
+        
+
+   <script>
+  // Função para simular pagamento
+  document.querySelector(".payment").addEventListener("click", function () {
+    // Exibe modal de carregamento
+    const paymentModal = document.getElementById("paymentModal");
+    const modalMessage = document.getElementById("modalMessage");
+    paymentModal.style.display = "block";
+
+    // Simula um tempo de espera de 3 segundos para processamento
+    setTimeout(function () {
+      // Atualiza a mensagem para pagamento aprovado
+      modalMessage.textContent = "Payment approved!";
+
+      // Fecha o modal após 2 segundos
+      setTimeout(function () {
+        paymentModal.style.display = "none";
+      }, 2000);
+    }, 3000); // 3 segundos de delay
+  });
+</script>
